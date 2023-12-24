@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body>
+    <input id="user-input" type="text" placeholder="Type your message here">
+    <button id="submit-button">Submit</button>
+
+    <py-script>
+        count = 0
+        count_limit = 3
+
+        def check_input(event):
+            global count
+            ipt = Element('user-input').element.value
+            if count < count_limit:
+                count += 1
+                if ipt.upper() == 'HELP':
+                    print('Start: the car starts')
+                    print('Stop: the car stops')
+                    print('Quit: to quit the program')
+                elif ipt.upper() == 'START':
+                    print('The car has started')
+                elif ipt.upper() == 'STOP':
+                    print('The car has stopped')
+                elif ipt.upper() == 'QUIT':
+                    print('Okay, you will exit')
+                    Element('user-input').element.value = ''
+                    return
+                else:
+                    print('I do not understand')
+                Element('user-input').element.value = ''
+
+        def setup():
+            Element('submit-button').element.onclick = check_input
+
+        setup()
+    </py-script>
+
+    <py-repl></py-repl>
+</body>
+</html>
